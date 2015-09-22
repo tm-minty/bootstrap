@@ -6,13 +6,6 @@ echo "NPM Init"
 echo "Installing main dependencies"
 #npm install --save-dev bower browser-sync gulp gulp-load-plugins gulp-inject gulp-less gulp-plumber wiredep rimraf
 
-echo "Configuring Bower"
-bower init
-echo "Bower directory: "
-read BOWER_DIRECTORY
-cp ./.bootstrap/.bowerrc .
-sed -i "s/\\\$BOWER_DIRECTORY\\\$/${BOWER_DIRECTORY}/g" ".bowerrc";
-
 echo "Configuring Gulp"
 mkdir gulpdir
 cp ./.bootstrap/gulp/gulpfile.js .
@@ -57,3 +50,10 @@ if [ -z "SCRIPTS_DIR" ]; then
 fi
 mkdir -p $PROJECT_DIR/$SCRIPTS_DIR
 sed -i "s/\\\$SCRIPTS_DIR\\\$/${SCRIPTS_DIR}/g" "gulpdir/paths.js";
+
+echo "Configuring Bower"
+bower init
+echo "Bower directory: "
+read BOWER_DIRECTORY
+cp ./.bootstrap/.bowerrc .
+sed -i "s/\\\$BOWER_DIRECTORY\\\$/${BOWER_DIRECTORY}/g" ".bowerrc";
